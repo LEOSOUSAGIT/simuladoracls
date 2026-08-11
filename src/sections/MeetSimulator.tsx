@@ -19,10 +19,10 @@ export function MeetSimulator() {
 
   return (
     <section id="simulador" className="grain relative overflow-hidden bg-graphite">
-      <Container className="pt-[clamp(3.5rem,2.75rem+2.4vw,6rem)] pb-14 sm:pb-16">
+      <Container className="pt-[var(--space-seam)] pb-14 sm:pb-16">
         <SectionMark label={simulator.kicker} tone="dark" />
 
-        <div className="mt-10 grid gap-x-12 gap-y-9 sm:mt-12 lg:grid-cols-12">
+        <div className="mt-[var(--space-mark)] grid gap-x-12 gap-y-9 lg:grid-cols-12">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -19,7 +19,7 @@ export function WhyPractice() {
         <SectionMark label={why.kicker} />
 
         {/* Headline + intro em colunas desiguais. */}
-        <div className="mt-14 grid gap-x-12 gap-y-10 lg:grid-cols-12">
+        <div className="mt-[var(--space-mark)] grid gap-x-12 gap-y-9 lg:grid-cols-12">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ export function WhyPractice() {
         </div>
 
         {/* Progressão: reconhecer → interpretar → decidir → agir */}
-        <div className="relative mt-24 sm:mt-32">
+        <div className="relative mt-[var(--space-block)]">
           <div className="relative h-px w-full bg-ink/12">
             <motion.div
               initial={{ scaleX: 0 }}
@@ -71,7 +71,7 @@ export function WhyPractice() {
                   ficam rentes às bordas do container, mantendo o alinhamento
                   do grid da página.
                 */
-                className="border-b border-ink/12 pt-8 pb-10 sm:pr-10 xl:border-r xl:border-b-0 xl:px-10 xl:first:pl-0 xl:last:border-r-0 xl:last:pr-0"
+                className="border-b border-ink/12 pt-9 pb-14 sm:pr-10 xl:border-r xl:border-b-0 xl:px-10 xl:first:pl-0 xl:last:border-r-0 xl:last:pr-0"
               >
                 {/*
                   Coluna fixa para o índice: garante que os quatro blocos
@@ -102,7 +102,7 @@ export function WhyPractice() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-20%" }}
           transition={{ duration: 0.8, ease }}
-          className="headline mt-24 max-w-[22ch] text-h2 sm:mt-32"
+          className="headline mt-[var(--space-block)] max-w-[22ch] text-h2"
         >
           {why.closing.map((line) => (
             <span key={line} className="block">

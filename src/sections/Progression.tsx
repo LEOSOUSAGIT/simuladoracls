@@ -35,7 +35,7 @@ export function Progression() {
       <Container>
         <SectionMark label={s.kicker} />
 
-        <div className="mt-14 grid gap-x-12 gap-y-9 lg:grid-cols-12">
+        <div className="mt-[var(--space-mark)] grid gap-x-12 gap-y-9 lg:grid-cols-12">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -57,7 +57,7 @@ export function Progression() {
         </div>
 
         {/* Escada de estágios */}
-        <ol className="mt-20 sm:mt-28">
+        <ol className="mt-[var(--space-block)]">
           {s.stages.map((stage, i) => {
             const isLast = i === s.stages.length - 1;
             const stroke = isLast ? "bg-red" : "bg-ink/25";
@@ -102,7 +102,7 @@ export function Progression() {
         </ol>
 
         {/* Ciclo de repetição */}
-        <div className="mt-24 border-t border-ink/12 pt-12 sm:mt-32">
+        <div className="mt-[var(--space-block)] border-t border-ink/12 pt-12">
           <motion.ul
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}

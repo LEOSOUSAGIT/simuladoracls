@@ -48,7 +48,7 @@ export const site = {
     headline: ["Saber o protocolo é essencial.", "Aplicá-lo é outra coisa."],
     headlineAccent: "Aplicá-lo é outra coisa.",
     intro:
-      "A teoria ensina a sequência. A emergência cobra a execução — com um paciente que muda, um relógio que corre e uma equipe esperando a sua próxima ordem.",
+      "A teoria ensina a sequência. A emergência cobra a execução, com um paciente que muda, um relógio que corre e uma equipe esperando a sua próxima ordem.",
     steps: [
       {
         index: "01",
@@ -81,13 +81,13 @@ export const site = {
     kicker: "Conheça o simulador interativo",
     headline: ["Entre em uma emergência", "criada para você praticar."],
     headlineAccent: "criada para você praticar.",
-    body: "Você entra em um ambiente clínico 3D, acompanha o estado do paciente, lê o monitor, usa os recursos da sala e conduz o caso. Cada decisão altera o que acontece em seguida — inclusive quando a decisão está errada.",
+    body: "Você entra em um ambiente clínico 3D, acompanha o estado do paciente, lê o monitor, usa os recursos da sala e conduz o caso. Cada decisão altera o que acontece em seguida, inclusive quando está errada.",
     quote: "Eu realmente entro no cenário e preciso interagir com o caso.",
     scene: {
       src: null as string | null,
       alt: "Sala de emergência do simulador 3D",
       kind: "Screenshot" as const,
-      hint: "Sala de emergência — visão geral do cenário 3D",
+      hint: "Sala de emergência, visão geral do cenário 3D",
       caption: "Sala de emergência do simulador",
     },
     labels: [
@@ -105,9 +105,10 @@ export const site = {
 
   howItWorks: {
     kicker: "Como funciona o treinamento",
-    headline: ["Aprenda. Teste. Pratique."],
+    headline: ["Aprenda. Teste.", "Pratique."],
+    headlineAccent: "Pratique.",
     intro:
-      "O simulador não começa na sala 3D. Começa no conteúdo, passa pela avaliação e termina com você conduzindo um caso — teoria, prova e simulação se completando.",
+      "O simulador não começa na sala 3D. Começa no conteúdo, passa pela avaliação e termina com você conduzindo um caso. Teoria, prova e simulação se completando.",
     steps: [
       {
         index: "01",
@@ -136,8 +137,9 @@ export const site = {
   practice: {
     kicker: "O que você vai praticar",
     headline: ["Do traçado", "à conduta."],
+    headlineAccent: "à conduta.",
     intro:
-      "A experiência dentro do simulador se organiza em três capacidades que só a repetição constrói — e que a leitura sozinha não entrega.",
+      "A experiência dentro do simulador se organiza em três capacidades que só a repetição constrói, e que a leitura sozinha não entrega.",
     /** Índice das três capacidades: anuncia os blocos que vêm em seguida. */
     capabilities: [
       { term: "Reconheça", body: "O que o monitor está mostrando." },
@@ -156,7 +158,7 @@ export const site = {
     decide: {
       label: "Decida",
       headline: "191 bpm. Paciente instável. E agora?",
-      body: "Reconhecer o ritmo não resolve o caso. É preciso ler os sinais vitais, avaliar a estabilidade e escolher a conduta — droga ou choque, sincronizado ou não, e com qual carga.",
+      body: "Reconhecer o ritmo não resolve o caso. É preciso ler os sinais vitais, avaliar a estabilidade e escolher a conduta: droga ou choque, sincronizado ou não, e com qual carga.",
       aside: "A mesma arritmia pede condutas diferentes conforme o estado do paciente. É essa leitura que o simulador cobra.",
       media: {
         /** Captura provisória em /image/painelgraficobpm.png — reativar com a definitiva. */
@@ -164,7 +166,7 @@ export const site = {
         alt: "Monitor e desfibrilador do simulador durante um cenário",
         focal: "50% 40%",
         kind: "Screenshot" as const,
-        hint: "Monitor e desfibrilador — momento de decisão clínica",
+        hint: "Monitor e desfibrilador em momento de decisão clínica",
         caption: "Monitor e desfibrilador durante um cenário em andamento",
       },
     },
@@ -203,7 +205,7 @@ export const site = {
         alt: "Recursos da sala de emergência no simulador 3D",
         focal: "50% 32%",
         kind: "Screenshot" as const,
-        hint: "Recursos da sala — desfibrilador, carrinho, medicações, via aérea",
+        hint: "Recursos da sala: desfibrilador, carrinho, medicações, via aérea",
         caption: "Recursos disponíveis durante o cenário",
       },
     },
@@ -236,14 +238,14 @@ export const site = {
     ],
     loop: ["Praticar", "Errar", "Receber feedback", "Repetir", "Evoluir"],
     loopBody:
-      "O erro dentro da simulação é barato e informativo. Ele mostra exatamente onde a conduta saiu do lugar — e você pode refazer o caso quantas vezes precisar.",
+      "O erro dentro da simulação é barato e informativo. Ele mostra exatamente onde a conduta saiu do lugar, e você pode refazer o caso quantas vezes precisar.",
     closing: "Não é uma sala 3D para explorar. É um treinamento estruturado para ser repetido.",
     /** Quando houver captura de feedback do simulador, apontar aqui. */
     media: {
       src: null as string | null,
       alt: "Tela de feedback ao final de um caso",
       kind: "Screenshot" as const,
-      hint: "Feedback do caso — conduta avaliada e resultado",
+      hint: "Feedback do caso: conduta avaliada e resultado",
       caption: "Feedback ao final do caso",
     },
   },
@@ -253,8 +255,9 @@ export const site = {
   offer: {
     kicker: "A oferta",
     headline: ["Leve sua preparação", "para a prática."],
+    headlineAccent: "para a prática.",
     intro:
-      "Um acesso, todas as etapas do treinamento — do estudo à sala de emergência completa.",
+      "Um acesso, todas as etapas do treinamento, do estudo à sala de emergência completa.",
     includes: [
       "Estudo de ritmos, protocolos e condutas",
       "Testes com resultado imediato",
@@ -278,16 +281,6 @@ export const site = {
       { label: "Requisitos", value: PENDENTE as string | null },
     ],
     cta: "Quero começar a praticar",
-    /** Transparência é parte da confiança — e evita reembolso e problema em anúncio. */
-    honesty: {
-      title: "O que este produto não é",
-      items: [
-        "Não é o curso oficial de ACLS e não substitui a certificação.",
-        "Não possui vínculo, chancela ou afiliação com a American Heart Association.",
-        "Não substitui treinamento presencial nem avaliação de desempenho clínico.",
-      ],
-      note: "É uma ferramenta de preparação prática, para usar antes, durante e entre os treinamentos formais.",
-    },
   },
 
   /* ---------------------------------------------------------------- 08 */
@@ -298,19 +291,19 @@ export const site = {
     items: [
       {
         q: "Isso substitui o curso ou a certificação oficial de ACLS?",
-        a: "Não. O simulador é uma ferramenta de preparação prática e não emite certificação nem substitui o curso oficial. Ele foi feito para o intervalo entre estudar o protocolo e conseguir aplicá-lo — treinando reconhecimento, decisão e conduta quantas vezes você precisar.",
+        a: "Não. O simulador é uma ferramenta de preparação prática e não emite certificação nem substitui o curso oficial. Ele foi feito para o intervalo entre estudar o protocolo e conseguir aplicá-lo, treinando reconhecimento, decisão e conduta quantas vezes você precisar.",
       },
       {
         q: "O que exatamente é o simulador?",
-        a: "É um software de treinamento com três frentes: estudo do conteúdo, testes de fixação e uma prática em ambiente 3D interativo, onde você entra em um cenário de emergência, lê o monitor, usa os recursos da sala e conduz o caso. Não é videoaula nem banco de questões — é uma simulação em que as suas decisões alteram o que acontece.",
+        a: "É um software de treinamento com três frentes: estudo do conteúdo, testes de fixação e uma prática em ambiente 3D interativo, onde você entra em um cenário de emergência, lê o monitor, usa os recursos da sala e conduz o caso. Não é videoaula nem banco de questões: é uma simulação em que as suas decisões alteram o que acontece.",
       },
       {
         q: "Para quem ele é indicado?",
-        a: "Para profissionais e estudantes da área da saúde que já tiveram contato com o conteúdo de ACLS e querem treinar a aplicação prática — reconhecer ritmos com segurança, decidir condutas sob pressão e se familiarizar com a sequência de uma emergência antes de vivê-la.",
+        a: "Para profissionais e estudantes da área da saúde que já tiveram contato com o conteúdo de ACLS e querem treinar a aplicação prática: reconhecer ritmos com segurança, decidir condutas sob pressão e se familiarizar com a sequência de uma emergência antes de vivê-la.",
       },
       {
         q: "Preciso instalar alguma coisa?",
-        a: "Sim. O simulador é um programa que você baixa e instala no computador — não roda dentro do navegador. Depois da instalação, você pratica quantas vezes quiser sem depender de conexão constante.",
+        a: "Sim. O simulador é um programa que você baixa e instala no computador. Ele não roda dentro do navegador. Depois da instalação, você pratica quantas vezes quiser sem depender de conexão constante.",
         /** Confirmado com o cliente: produto instalável. */
       },
       {

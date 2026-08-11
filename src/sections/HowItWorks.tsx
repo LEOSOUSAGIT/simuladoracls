@@ -21,7 +21,7 @@ export function HowItWorks() {
       <Container>
         <SectionMark label={s.kicker} />
 
-        <div className="mt-14 grid gap-x-12 gap-y-9 lg:grid-cols-12">
+        <div className="mt-[var(--space-mark)] grid gap-x-12 gap-y-9 lg:grid-cols-12">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -29,7 +29,7 @@ export function HowItWorks() {
             transition={{ duration: 0.7, ease }}
             className="lg:col-span-6"
           >
-            <Headline lines={s.headline} className="text-h2" />
+            <Headline lines={s.headline} accent={s.headlineAccent} className="text-h2" />
           </motion.div>
 
           <motion.p
@@ -43,7 +43,7 @@ export function HowItWorks() {
           </motion.p>
         </div>
 
-        <ol className="mt-20 sm:mt-28">
+        <ol className="mt-[var(--space-block)]">
           {s.steps.map((step, i) => {
             const strong = step.weight === "strong";
             return (

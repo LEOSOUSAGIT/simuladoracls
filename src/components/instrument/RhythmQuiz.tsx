@@ -47,7 +47,7 @@ export function RhythmQuiz() {
         </p>
         <p className="mx-auto mt-5 max-w-[46ch] text-white/55">
           No simulador eles aparecem dentro de um caso em andamento, com um paciente que muda
-          enquanto você decide — e sem quatro alternativas na tela.
+          enquanto você decide, e sem quatro alternativas na tela.
         </p>
         <button
           onClick={restart}

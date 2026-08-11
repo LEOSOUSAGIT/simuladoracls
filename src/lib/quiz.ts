@@ -49,7 +49,7 @@ export const QUIZ: QuizItem[] = [
     ],
     answer: 0,
     explanation:
-      "Ondas P e complexos QRS em frequências próprias, sem relação entre si — átrios e ventrículos dissociados.",
+      "Ondas P e complexos QRS em frequências próprias, sem relação entre si: átrios e ventrículos dissociados.",
   },
   {
     rhythm: RHYTHMS.sinus,

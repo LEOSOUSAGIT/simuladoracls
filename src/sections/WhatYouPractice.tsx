@@ -31,9 +31,9 @@ export function WhatYouPractice() {
         <Container>
           <SectionMark label={s.kicker} />
 
-          <div className="mt-14 grid gap-x-12 gap-y-9 lg:grid-cols-12">
+          <div className="mt-[var(--space-mark)] grid gap-x-12 gap-y-9 lg:grid-cols-12">
             <motion.div {...reveal()} className="lg:col-span-6">
-              <Headline lines={s.headline} className="text-h2" />
+              <Headline lines={s.headline} accent={s.headlineAccent} className="text-h2" />
             </motion.div>
             <motion.p
               {...reveal(0.12)}

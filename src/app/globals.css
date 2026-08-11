@@ -76,6 +76,17 @@
    * os dois `--space-section` somam e abrem um buraco na página.
    */
   --space-seam: clamp(3rem, 2.25rem + 3vw, 5.5rem);
+  /**
+   * Respiro entre o rótulo da seção e a headline. Sempre o mesmo, em todas
+   * as seções — é o que dá a sensação de que a página segue uma régua.
+   */
+  --space-mark: 3.5rem;
+  /**
+   * Abertura de um bloco de conteúdo depois da introdução da seção: listas
+   * de etapas, progressões, blocos de fecho. Separa a leitura corrida do
+   * bloco estruturado que vem a seguir.
+   */
+  --space-block: clamp(5.5rem, 4rem + 3.2vw, 8rem);
   --space-gutter: clamp(1.25rem, 0.5rem + 3vw, 3.5rem);
 }
 

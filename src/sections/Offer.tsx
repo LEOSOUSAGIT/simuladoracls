@@ -28,9 +28,13 @@ export function Offer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-15%" }}
           transition={{ duration: 0.7, ease }}
-          className="mt-12 text-center"
+          className="mt-[var(--space-mark)] text-center"
         >
-          <Headline lines={s.headline} className="mx-auto max-w-[16ch] text-h2" />
+          <Headline
+            lines={s.headline}
+            accent={s.headlineAccent}
+            className="mx-auto max-w-[16ch] text-h2"
+          />
           <p className="mx-auto mt-7 max-w-[52ch] text-lead leading-[1.5] text-ink-2">
             {s.intro}
           </p>
@@ -42,11 +46,11 @@ export function Offer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-12%" }}
           transition={{ duration: 0.7, ease, delay: 0.1 }}
-          className="mt-20 grid gap-x-16 gap-y-14 border-t border-ink/12 pt-14 sm:mt-28 lg:grid-cols-2 lg:gap-x-24"
+          className="mt-[var(--space-block)] grid gap-x-16 gap-y-14 border-t border-ink/12 pt-14 lg:grid-cols-2 lg:gap-x-24"
         >
           <div>
             <h3 className="tech-sm text-ink-3">O que está incluído</h3>
-            <ul className="mt-8 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            <ul className="mt-8 grid gap-x-10 gap-y-4 sm:grid-cols-2">
               {s.includes.map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <Check />
@@ -84,26 +88,6 @@ export function Offer() {
           <CTA href={brand.checkoutUrl}>{s.cta}</CTA>
         </motion.div>
 
-        {/* Transparência: sustenta a confiança e evita problema em anúncio. */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-10%" }}
-          transition={{ duration: 0.7, ease }}
-          className="mx-auto mt-20 max-w-3xl border-t border-ink/12 pt-10 sm:mt-28"
-        >
-          <h3 className="tech-sm text-ink-3">{s.honesty.title}</h3>
-          <ul className="mt-6 grid gap-3">
-            {s.honesty.items.map((item) => (
-              <li key={item} className="text-[0.9375rem] leading-[1.6] text-ink-2">
-                {item}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 text-[0.9375rem] leading-[1.6] font-medium text-ink">
-            {s.honesty.note}
-          </p>
-        </motion.div>
       </Container>
     </section>
   );

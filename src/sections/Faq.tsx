@@ -22,7 +22,7 @@ export function Faq() {
         <Container>
           <SectionMark label={s.kicker} />
 
-          <div className="mt-14 grid gap-x-16 gap-y-10 lg:grid-cols-12">
+          <div className="mt-[var(--space-mark)] grid gap-x-16 gap-y-9 lg:grid-cols-12">
             <motion.div
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export function Faq() {
                         className="relative mt-2 h-3 w-3 shrink-0"
                         aria-hidden
                       >
-                        <span className="absolute top-1/2 left-0 h-px w-3 -translate-y-1/2 bg-ink/50" />
+                        <span className="absolute top-1/2 left-0 h-px w-3 -translate-y-1/2 bg-ink/50 transition-colors duration-200 group-open:bg-red" />
                         <span className="absolute top-0 left-1/2 h-3 w-px -translate-x-1/2 bg-ink/50 transition-transform duration-200 group-open:rotate-90 group-open:opacity-0" />
                       </span>
                     </summary>

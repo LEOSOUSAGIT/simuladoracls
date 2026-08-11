@@ -226,7 +226,7 @@ export function Pending({ children }: { children: string }) {
   return (
     <span className="tech-sm inline-flex items-center gap-2 border border-dashed border-ink/25 px-2 py-1.5 text-ink-3">
       <span className="h-1 w-1 shrink-0 rounded-full bg-ink/30" aria-hidden />
-      {children} — a definir
+      {children}: a definir
     </span>
   );
 }
