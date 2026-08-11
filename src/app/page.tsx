@@ -1,5 +1,4 @@
 import { StickyCTA } from "@/components/brand/StickyCTA";
-import { TypeSwitcher } from "@/components/dev/TypeSwitcher";
 import { Faq } from "@/sections/Faq";
 import { Hero } from "@/sections/Hero";
 import { HowItWorks } from "@/sections/HowItWorks";
@@ -21,8 +20,6 @@ export default function Page() {
       {/* 07 */} <Offer />
       {/* 08 */} <Faq />
       <StickyCTA />
-      {/* Ferramenta de decisão tipográfica — remover ao fechar a escolha. */}
-      <TypeSwitcher />
     </main>
   );
 }

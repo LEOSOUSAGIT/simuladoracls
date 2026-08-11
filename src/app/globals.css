@@ -28,9 +28,29 @@
   --color-signal: #2fd46b;
   --color-probe: #3f7fd1;
 
-  /* Tipografia — resolvida em runtime pelo seletor de identidade */
-  --font-sans: var(--font-sans-active);
-  --font-mono: var(--font-mono-active);
+  /**
+   * TIPOGRAFIA DA MARCA
+   *
+   * Sans: pilha do sistema. É o desenho aprovado — no Windows resolve como
+   * Segoe UI Variable. Escolha deliberada, não fallback acidental.
+   *
+   * NÃO nomear um corte específico (Text, Display, Small) antes de
+   * `ui-sans-serif`. A Segoe UI Variable tem eixo de optical size, e o
+   * navegador escolhe o corte certo pelo corpo do texto: Display, mais
+   * estreito e fechado, nas headlines grandes; Text no corpo. Fixar
+   * "Segoe UI Variable Text" desliga esse ajuste e alarga as headlines.
+   *
+   * ATENÇÃO: fonte de sistema muda conforme o dispositivo. Em macOS e iOS
+   * renderiza San Francisco, em Android renderiza Roboto. O caráter humanista
+   * se mantém próximo, mas as proporções variam — e a quebra de linha das
+   * headlines junto.
+   *
+   * Mono: Geist Mono, self-hosted, idêntica em todos os dispositivos.
+   */
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
   /* Escala tipográfica fluida */
   --text-micro: 0.6875rem;
@@ -60,34 +80,16 @@
 }
 
 /* ------------------------------------------------------------
-   IDENTIDADE TIPOGRÁFICA — 3 opções em avaliação.
-   Trocar o data-type no <html> troca a marca inteira.
-   Ao fixar a decisão, manter apenas um bloco e apagar o resto.
+   COMPORTAMENTO DAS HEADLINES
+   Valores calibrados para o desenho do Geist: peso 700 já lê como
+   forte, e o tracking negativo fecha o espaçamento naturalmente
+   aberto da família nos corpos grandes.
    ------------------------------------------------------------ */
 
-:root,
-[data-type="tecnica"] {
-  --font-sans-active: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  --font-mono-active: var(--font-geist-mono), ui-monospace, monospace;
+:root {
   --headline-weight: 700;
   --headline-tracking: -0.035em;
   --headline-leading: 0.94;
-}
-
-[data-type="editorial"] {
-  --font-sans-active: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-mono-active: var(--font-plex-mono), ui-monospace, monospace;
-  --headline-weight: 800;
-  --headline-tracking: -0.028em;
-  --headline-leading: 0.9;
-}
-
-[data-type="grotesca"] {
-  --font-sans-active: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
-  --font-mono-active: var(--font-jb-mono), ui-monospace, monospace;
-  --headline-weight: 800;
-  --headline-tracking: -0.042em;
-  --headline-leading: 0.92;
 }
 
 /* ------------------------------------------------------------
