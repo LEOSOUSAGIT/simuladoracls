@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Container, Headline, MediaSlot, SectionMark } from "@/components/brand/primitives";
+import { Container, Headline, MediaPlate, SectionMark } from "@/components/brand/primitives";
 import { site } from "@/content/site";
 
 const ease = [0.2, 0.7, 0.3, 1] as const;
@@ -31,7 +31,7 @@ export function Progression() {
   const at = (i: number) => `calc(${i} * ${STEP})`;
 
   return (
-    <section id="progressao" className="bg-bone pt-[var(--space-section)] pb-[var(--space-seam)]">
+    <section id="progressao" className="bg-bone pt-[var(--space-surface)] pb-[var(--space-seam)]">
       <Container>
         <SectionMark label={s.kicker} />
 
@@ -50,7 +50,7 @@ export function Progression() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.7, ease, delay: 0.12 }}
-            className="max-w-[42ch] self-end text-body leading-[1.6] text-ink-2 lg:col-span-4 lg:col-start-9"
+            className="max-w-[40ch] self-center text-lead leading-[1.5] text-ink-2 lg:col-span-5 lg:col-start-8"
           >
             {s.intro}
           </motion.p>
@@ -147,22 +147,22 @@ export function Progression() {
               {s.closing}
             </motion.p>
           </div>
-
-          {/* Espaço reservado para a captura de feedback do simulador. */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-10%" }}
-            transition={{ duration: 0.7, ease }}
-            className="mt-16 sm:mt-20"
-          >
-            <MediaSlot
-              media={s.media}
-              tone="light"
-              aspect="aspect-[4/3] sm:aspect-[16/9] xl:aspect-[2/1]"
-            />
-          </motion.div>
         </div>
+
+        {/*
+          A prova do que a seção acabou de afirmar: o feedback real do caso.
+          Fora do bloco do ciclo, para que a placa encerre a seção inteira e
+          não pareça um anexo do último parágrafo.
+        */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10%" }}
+          transition={{ duration: 0.7, ease }}
+          className="mt-[var(--space-block)]"
+        >
+          <MediaPlate media={s.media} tone="light" />
+        </motion.div>
       </Container>
     </section>
   );

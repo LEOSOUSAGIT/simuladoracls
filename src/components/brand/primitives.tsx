@@ -5,27 +5,6 @@ function cx(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(" ");
 }
 
-function ImageFill({
-  src,
-  alt,
-  focal,
-}: {
-  src: string;
-  alt: string;
-  focal?: string;
-}) {
-  return (
-    <Image
-      src={src}
-      alt={alt}
-      fill
-      sizes="100vw"
-      className="object-cover"
-      style={focal ? { objectPosition: focal } : undefined}
-    />
-  );
-}
-
 /* ---------------------------------------------------------------- */
 
 export function Container({
@@ -170,48 +149,118 @@ export function MediaPlaceholder({
   );
 }
 
+export type Media = {
+  src: string | null;
+  /** Dimensões nativas do arquivo. Definem a proporção — nunca se recorta. */
+  w: number;
+  h: number;
+  alt: string;
+  kind: MediaKind;
+  hint?: string;
+};
+
 /**
- * Slot de mídia: entrega a imagem real quando ela existe e reserva o espaço
- * na proporção correta quando ainda não existe.
+ * PLACA — o único jeito de mostrar uma captura do simulador.
+ *
+ * A versão anterior sangrava as capturas de borda a borda e forçava 16:9 em
+ * arquivos que não eram 16:9. O resultado lia como fragmento recortado de
+ * outra coisa, não como a tela do produto.
+ *
+ * Aqui a captura entra inteira, na proporção nativa do arquivo (por isso
+ * `w`/`h` vêm do conteúdo), apoiada sobre uma placa de grafite com margem
+ * visível e cantos de registro. A margem é o que transforma "imagem cortada"
+ * em "tela apresentada": o olho lê a folga como enquadramento deliberado.
+ *
+ * Os cantos são marcas de registro gráfico, não interface — não há risco de
+ * confundi-los com uma tela do simulador. O canto superior esquerdo é
+ * vermelho: é a marca que diz onde a leitura começa.
  */
-export function MediaSlot({
+export function MediaPlate({
   media,
-  aspect = "aspect-[4/3] sm:aspect-[16/9]",
   tone = "dark",
+  sizes = "(min-width: 1440px) 1340px, 100vw",
+  priority = false,
   className,
+  children,
 }: {
-  media: {
-    src: string | null;
-    alt: string;
-    focal?: string;
-    caption?: string;
-    kind: MediaKind;
-    hint?: string;
-  };
-  aspect?: string;
+  media: Media;
+  /** Superfície em que a placa se apoia. No osso, ela ganha sombra. */
   tone?: "light" | "dark";
+  sizes?: string;
+  priority?: boolean;
   className?: string;
+  /** Sobreposições ancoradas à imagem (anotações da cena). */
+  children?: ReactNode;
 }) {
   return (
-    <figure className={className}>
-      <div className={cx("relative w-full overflow-hidden", aspect, media.src && "bg-graphite")}>
-        {media.src ? (
-          <ImageFill src={media.src} alt={media.alt} focal={media.focal} />
-        ) : (
-          <MediaPlaceholder kind={media.kind} hint={media.hint} tone={tone} />
-        )}
-      </div>
-      {media.src && media.caption && (
-        <figcaption
-          className={cx(
-            "mt-4 text-[0.8125rem]",
-            tone === "dark" ? "text-white/35" : "text-ink-3",
+    <figure className={cx("relative", className)}>
+      <PlateFrame tone={tone}>
+        <div className="relative overflow-hidden bg-graphite">
+          {media.src ? (
+            <Image
+              src={media.src}
+              alt={media.alt}
+              width={media.w}
+              height={media.h}
+              sizes={sizes}
+              priority={priority}
+              className="block h-auto w-full"
+            />
+          ) : (
+            <div className="w-full" style={{ aspectRatio: `${media.w} / ${media.h}` }}>
+              <MediaPlaceholder kind={media.kind} hint={media.hint} tone="dark" />
+            </div>
           )}
-        >
-          {media.caption}
-        </figcaption>
-      )}
+          {children}
+        </div>
+      </PlateFrame>
     </figure>
+  );
+}
+
+/**
+ * A moldura da placa, sem a mídia. Existe separada porque a versão explorável
+ * precisa da mesma casca com um miolo interativo dentro.
+ */
+export function PlateFrame({
+  tone = "dark",
+  children,
+}: {
+  tone?: "light" | "dark";
+  children: ReactNode;
+}) {
+  return (
+    <div
+      className={cx(
+        "relative bg-graphite-2 p-2.5 ring-1 ring-inset ring-white/10 sm:p-4 lg:p-5",
+        tone === "light" && "shadow-[0_40px_80px_-32px_rgba(11,12,14,0.45)]",
+      )}
+    >
+      <div className="relative">
+        {children}
+        <RegistrationMarks />
+      </div>
+    </div>
+  );
+}
+
+/** Cantos de registro: enquadram a captura sem tocar nela. */
+function RegistrationMarks() {
+  const v = "absolute h-4 w-px";
+  const h = "absolute h-px w-4";
+  const tone = "bg-white/25";
+
+  return (
+    <div className="pointer-events-none absolute -inset-2 hidden sm:block" aria-hidden>
+      <span className={cx(v, "top-0 left-0 bg-red")} />
+      <span className={cx(h, "top-0 left-0 bg-red")} />
+      <span className={cx(v, "top-0 right-0", tone)} />
+      <span className={cx(h, "top-0 right-0", tone)} />
+      <span className={cx(v, "bottom-0 left-0", tone)} />
+      <span className={cx(h, "bottom-0 left-0", tone)} />
+      <span className={cx(v, "right-0 bottom-0", tone)} />
+      <span className={cx(h, "right-0 bottom-0", tone)} />
+    </div>
   );
 }
 

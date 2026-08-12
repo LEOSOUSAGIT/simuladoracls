@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Container, Headline, MediaSlot, SectionMark } from "@/components/brand/primitives";
+import { Container, Headline, MediaPlate, SectionMark } from "@/components/brand/primitives";
 import { RhythmQuiz } from "@/components/instrument/RhythmQuiz";
 import { site } from "@/content/site";
 
@@ -15,11 +15,18 @@ const reveal = (delay = 0) => ({
 });
 
 /**
- * 05 — Seção de profundidade do produto: Reconheça → Decida → Intervenha.
+ * 05 — Reconheça → Decida → Intervenha.
  *
- * Cada bloco recebe um tratamento diferente para que a seção não vire uma
- * lista de funcionalidades: o primeiro é jogável, o segundo é editorial com
- * a imagem sangrando pela esquerda, o terceiro abre com cena full-bleed.
+ * A seção é UM painel de grafite, não três blocos alternando superfície.
+ * Antes, Decida entrava em osso entre dois blocos escuros, e isso obrigava a
+ * placa a pousar sobre creme: uma mancha escura grande sobre a superfície
+ * clara, que brigava com tudo em volta. Em todo o resto da página a placa
+ * repousa sobre grafite.
+ *
+ * Dentro do painel, as três baias se separam por fio, não por troca de cor —
+ * é a gramática de instrumento que a página já usa. A variedade vem do
+ * arranjo interno: a primeira é jogável em largura cheia, e as duas seguintes
+ * são espelhos exatos uma da outra, com a captura trocando de lado.
  */
 export function WhatYouPractice() {
   const { practice: s } = site;
@@ -27,7 +34,7 @@ export function WhatYouPractice() {
   return (
     <section id="pratica">
       {/* ------------------------------------------------ abertura */}
-      <div className="bg-bone pt-[var(--space-seam)] pb-12 sm:pb-16">
+      <div className="bg-bone pt-[var(--space-seam)] pb-[var(--space-surface)]">
         <Container>
           <SectionMark label={s.kicker} />
 
@@ -37,7 +44,7 @@ export function WhatYouPractice() {
             </motion.div>
             <motion.p
               {...reveal(0.12)}
-              className="max-w-[46ch] self-end text-body leading-[1.6] text-ink-2 lg:col-span-5 lg:col-start-8"
+              className="max-w-[40ch] self-center text-lead leading-[1.5] text-ink-2 lg:col-span-5 lg:col-start-8"
             >
               {s.intro}
             </motion.p>
@@ -45,9 +52,8 @@ export function WhatYouPractice() {
 
           {/*
             Índice das três capacidades. Sem ele a abertura promete "três
-            capacidades" e corta direto para o bloco escuro, deixando a
-            transição sem apoio. Sem números e sem réguas verticais, para
-            não repetir a composição da seção 02.
+            capacidades" e corta direto para o painel escuro, deixando a
+            transição sem apoio.
           */}
           <ul className="mt-16 grid border-t border-ink/12 sm:mt-20 sm:grid-cols-3 sm:gap-x-12">
             {s.capabilities.map((c, i) => (
@@ -64,17 +70,18 @@ export function WhatYouPractice() {
         </Container>
       </div>
 
-      {/* ------------------------------------------------ RECONHEÇA */}
-      <div className="grain relative bg-graphite py-[var(--space-section)]">
-        <Container>
-          <div className="grid gap-x-12 gap-y-8 lg:grid-cols-12">
+      {/* ------------------------------------------------ o painel */}
+      <div className="grain relative bg-graphite">
+        <Container className="relative z-[2] py-[var(--space-surface)]">
+          {/* -------------------------------------------- RECONHEÇA */}
+          <div className="grid gap-x-14 gap-y-8 lg:grid-cols-12">
             <motion.div {...reveal()} className="lg:col-span-7">
-              <BlockLabel tone="dark">{s.recognize.label}</BlockLabel>
-              <h3 className="headline mt-6 text-h3 text-bone">{s.recognize.headline}</h3>
+              <BlockLabel>{s.recognize.label}</BlockLabel>
+              <h3 className="headline mt-6 text-feature text-bone">{s.recognize.headline}</h3>
             </motion.div>
             <motion.p
               {...reveal(0.1)}
-              className="max-w-[44ch] self-end text-body leading-[1.6] text-white/55 lg:col-span-5"
+              className="max-w-[40ch] self-center text-lead leading-[1.5] text-white/60 lg:col-span-5"
             >
               {s.recognize.body}
             </motion.p>
@@ -86,80 +93,63 @@ export function WhatYouPractice() {
               <RhythmQuiz />
             </div>
           </motion.div>
-        </Container>
-      </div>
 
-      {/* ------------------------------------------------ DECIDA */}
-      <div className="overflow-hidden bg-bone">
-        <div className="grid lg:grid-cols-2 lg:items-center">
-          {/* A mídia sangra pela borda esquerda — nenhuma outra seção faz isso. */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-10%" }}
-            transition={{ duration: 0.85, ease }}
-            className="w-full"
-          >
-            <MediaSlot
-              media={s.decide.media}
-              tone="light"
-              aspect="aspect-[16/10] lg:aspect-[5/4]"
-            />
-          </motion.div>
-
-          <motion.div
-            {...reveal(0.1)}
-            className="container-page py-16 sm:py-20 lg:px-0 lg:py-24 lg:pr-[var(--space-gutter)] lg:pl-16 xl:pl-24"
-          >
-            <BlockLabel>{s.decide.label}</BlockLabel>
-            <h3 className="headline mt-6 max-w-[16ch] text-h3 text-ink">
-              {s.decide.headline}
-            </h3>
-            <p className="mt-7 max-w-[48ch] text-body leading-[1.6] text-ink-2">
-              {s.decide.body}
-            </p>
-            <p className="mt-9 max-w-[46ch] border-l-2 border-red pl-5 text-[1.0625rem] leading-[1.55] font-medium text-ink">
-              {s.decide.aside}
-            </p>
-            {/* A legenda descreve a captura — só existe quando ela existe. */}
-            {s.decide.media.src && <p className="label mt-10">{s.decide.media.caption}</p>}
-          </motion.div>
-        </div>
-      </div>
-
-      {/* ------------------------------------------------ INTERVENHA */}
-      <div className="grain relative bg-graphite">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-10%" }}
-          transition={{ duration: 0.9, ease }}
-          className="w-full border-b border-white/10"
-        >
-          <MediaSlot
-            media={s.intervene.media}
-            aspect="aspect-[4/3] sm:aspect-[16/9] xl:aspect-[21/9]"
-          />
-        </motion.div>
-
-        <Container className="pt-16 pb-[var(--space-section)] sm:pt-20">
-          <div className="grid gap-x-12 gap-y-8 lg:grid-cols-12">
-            <motion.div {...reveal()} className="lg:col-span-7">
-              <BlockLabel tone="dark">{s.intervene.label}</BlockLabel>
-              <h3 className="headline mt-6 max-w-[18ch] text-h3 text-bone">
-                {s.intervene.headline}
-              </h3>
-            </motion.div>
-            <motion.p
-              {...reveal(0.1)}
-              className="max-w-[44ch] self-end text-body leading-[1.6] text-white/55 lg:col-span-5"
+          {/* -------------------------------------------- DECIDA */}
+          <Bay>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.85, ease }}
+              className="lg:order-1"
             >
-              {s.intervene.body}
-            </motion.p>
-          </div>
+              <MediaPlate media={s.decide.media} sizes="(min-width: 1024px) 58vw, 100vw" />
+            </motion.div>
+
+            <motion.div {...reveal(0.1)} className="lg:order-2">
+              <BayCopy
+                label={s.decide.label}
+                headline={s.decide.headline}
+                body={s.decide.body}
+                aside={s.decide.aside}
+              />
+            </motion.div>
+          </Bay>
+
+          {/* -------------------------------------------- INTERVENHA */}
+          <Bay flip>
+            {/*
+              Espelho exato da baia anterior: mesma proporção de colunas, mesmo
+              alinhamento vertical, captura do lado oposto. A troca de lado é a
+              única diferença, e é o que dá ritmo sem inventar outro layout.
+            */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.85, ease }}
+              className="lg:order-2"
+            >
+              <MediaPlate media={s.intervene.media} sizes="(min-width: 1024px) 58vw, 100vw" />
+            </motion.div>
+
+            <motion.div {...reveal(0.1)} className="lg:order-1">
+              <BayCopy
+                label={s.intervene.label}
+                headline={s.intervene.headline}
+                body={s.intervene.body}
+                /*
+                  O princípio era um parágrafo solto em largura cheia no fim da
+                  seção. Como destaque da coluna, ele ocupa a mesma posição do
+                  aside de Decida e as duas baias fecham igual.
+                */
+                aside={s.intervene.principle}
+              />
+            </motion.div>
+          </Bay>
 
           {/* Recursos como linhas de definição, não como cards com ícone. */}
-          <dl className="mt-16 grid gap-x-14 sm:mt-20 lg:grid-cols-2">
+          <dl className="mt-[var(--space-block)] grid gap-x-14 lg:grid-cols-2">
             {s.intervene.actions.map((action, i) => (
               <motion.div
                 key={action.term}
@@ -173,13 +163,6 @@ export function WhatYouPractice() {
               </motion.div>
             ))}
           </dl>
-
-          <motion.p
-            {...reveal(0.1)}
-            className="headline mt-16 max-w-[26ch] text-h3 text-bone sm:mt-20"
-          >
-            {s.intervene.principle}
-          </motion.p>
         </Container>
       </div>
     </section>
@@ -188,19 +171,67 @@ export function WhatYouPractice() {
 
 /* ---------------------------------------------------------------- */
 
-function BlockLabel({
-  children,
-  tone = "light",
+/**
+ * Baia do painel: fio de separação no topo e duas colunas na mesma régua,
+ * 7 para a captura e 5 para o texto, centradas verticalmente.
+ *
+ * `flip` inverte a régua junto com os `lg:order-*` dos filhos. Sem inverter o
+ * template, a ordem só trocaria os itens de lugar e a captura acabaria na
+ * coluna estreita — as duas baias deixariam de ser espelhos.
+ *
+ * A ordem do documento é sempre captura e depois texto, então no mobile as
+ * duas baias começam pela imagem.
+ */
+function Bay({ children, flip = false }: { children: React.ReactNode; flip?: boolean }) {
+  return (
+    <div className="mt-[var(--space-block)] border-t border-white/10 pt-[var(--space-block)]">
+      <div
+        className={`grid items-center gap-x-14 gap-y-12 ${
+          flip
+            ? "lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]"
+            : "lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]"
+        }`}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function BayCopy({
+  label,
+  headline,
+  body,
+  aside,
 }: {
-  children: string;
-  tone?: "light" | "dark";
+  label: string;
+  headline: string;
+  body: string;
+  aside: string;
 }) {
+  /*
+    Sem medida máxima em nenhum dos três: quem define a linha é a largura da
+    coluna. As medidas fixas anteriores (15ch no título, 42ch no corpo)
+    estrangulavam o texto dentro de uma coluna que já era estreita, e o título
+    caía em três linhas curtas empilhadas em vez de correr na horizontal.
+  */
+  return (
+    <>
+      <BlockLabel>{label}</BlockLabel>
+      <h3 className="headline mt-6 text-feature text-bone">{headline}</h3>
+      <p className="mt-7 text-body leading-[1.6] text-white/55">{body}</p>
+      <p className="mt-8 border-l-2 border-red pl-5 text-[1.0625rem] leading-[1.55] font-medium text-bone">
+        {aside}
+      </p>
+    </>
+  );
+}
+
+function BlockLabel({ children }: { children: string }) {
   return (
     <div className="flex items-center gap-3">
       <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-red" aria-hidden />
-      <span className={`tech-sm ${tone === "light" ? "text-ink-2" : "text-white/60"}`}>
-        {children}
-      </span>
+      <span className="tech-sm text-white/60">{children}</span>
     </div>
   );
 }

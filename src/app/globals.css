@@ -68,13 +68,23 @@
   --text-h2: clamp(2.125rem, 1.4rem + 3.2vw, 4.5rem);
   --text-h1: clamp(2.75rem, 1.25rem + 6.6vw, 7.5rem);
 
-  /* Ritmo vertical das seções */
-  --space-section: clamp(5.5rem, 4rem + 7vw, 11rem);
   /**
-   * Emenda entre seções da MESMA superfície. Sem troca de cor não existe
-   * nada justificando o vazio, então cada lado paga metade — do contrário
-   * os dois `--space-section` somam e abrem um buraco na página.
+   * RITMO VERTICAL — três medidas, uma regra.
+   *
+   * O espaço entre duas seções é a SOMA do que cada lado paga. Ignorar isso
+   * foi o que abriu os buracos da primeira versão: dois `--space-section`
+   * encostados somavam ~330px de nada, justo nas trocas de cor, onde a
+   * mudança de superfície já separa as seções sozinha.
+   *
+   *   troca de superfície (osso ↔ grafite) → `--space-surface` de cada lado
+   *   mesma superfície                     → `--space-seam` de cada lado
+   *   fecho da página (único clímax)       → `--space-section`
+   *
+   * A troca de cor fica com o intervalo maior porque ali existe uma quebra
+   * real de assunto; ainda assim, longe do dobro.
    */
+  --space-section: clamp(5.5rem, 4rem + 7vw, 11rem);
+  --space-surface: clamp(4.5rem, 3.5rem + 3vw, 7rem);
   --space-seam: clamp(3rem, 2.25rem + 3vw, 5.5rem);
   /**
    * Respiro entre o rótulo da seção e a headline. Sempre o mesmo, em todas
@@ -110,6 +120,31 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+}
+
+/**
+ * ESCALA DE DESKTOP — o site em 100% com a proporção do zoom de 80%.
+ *
+ * A página inteira é construída em rem, então reduzir a raiz encolhe tudo
+ * junto: tipografia, espaçamentos, recuos, placas de imagem e o teto do
+ * container. É exatamente o que o zoom do navegador faz, e é por isso que a
+ * composição não quebra — headline, coluna e margem mudam na mesma proporção,
+ * ao contrário de estreitar a coluna sozinha.
+ *
+ * O teto do container cai de 1440px para 1152px, então sobra moldura de osso
+ * dos dois lados já a partir de 1200px de tela, sem depender de monitor
+ * grande para o conteúdo parar de crescer.
+ *
+ * Em porcentagem, não em px: quem aumentou o corpo padrão do navegador por
+ * necessidade continua com o aumento, só que proporcional.
+ *
+ * Vale de `lg` para cima, onde os layouts de várias colunas entram. No mobile
+ * a raiz fica intacta — lá o corpo de texto já está no mínimo confortável.
+ */
+@media (min-width: 64rem) {
+  html {
+    font-size: 80%;
+  }
 }
 
 body {

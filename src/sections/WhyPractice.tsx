@@ -14,7 +14,7 @@ export function WhyPractice() {
   const { why } = site;
 
   return (
-    <section id="por-que-pratica" className="bg-bone py-[var(--space-section)]">
+    <section id="por-que-pratica" className="bg-bone py-[var(--space-surface)]">
       <Container>
         <SectionMark label={why.kicker} />
 
@@ -39,7 +39,14 @@ export function WhyPractice() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.7, ease, delay: 0.12 }}
-            className="max-w-[46ch] self-end text-body leading-[1.6] text-ink-2 lg:col-span-4 lg:col-start-9"
+            /*
+              Abertura de seção, padrão da página: o parágrafo entra em
+              text-lead e centrado na altura da headline, nunca em corpo
+              pequeno ancorado na base. Em corpo de texto ele lia como legenda
+              perdida no canto, e a coluna direita parecia esperar conteúdo que
+              nunca chegava.
+            */
+            className="max-w-[40ch] self-center text-lead leading-[1.5] text-ink-2 lg:col-span-5 lg:col-start-8"
           >
             {why.intro}
           </motion.p>
@@ -47,15 +54,13 @@ export function WhyPractice() {
 
         {/* Progressão: reconhecer → interpretar → decidir → agir */}
         <div className="relative mt-[var(--space-block)]">
-          <div className="relative h-px w-full bg-ink/12">
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, margin: "-20%" }}
-              transition={{ duration: 1.5, ease }}
-              className="absolute inset-0 origin-left bg-red"
-            />
-          </div>
+          {/*
+            Régua neutra. Havia aqui uma barra vermelha que entrava da esquerda
+            e ficava: a animação terminava cobrindo a linha inteira, então o
+            que sobrava era uma régua vermelha permanente de ponta a ponta
+            atravessando a seção.
+          */}
+          <div className="h-px w-full bg-ink/12" />
 
           <ol className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
             {why.steps.map((step, i) => (
@@ -102,11 +107,18 @@ export function WhyPractice() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-20%" }}
           transition={{ duration: 0.8, ease }}
-          className="headline mt-[var(--space-block)] max-w-[22ch] text-h2"
+          /*
+            Fechos de seção ocupam a largura inteira do container, sem medida
+            máxima. Presos a 22ch dentro de uma coluna de ~90ch, viravam uma
+            ilha de texto num campo vazio, e o olho lia a sobra como falta.
+            Centralizar não resolveu: só dividiu a mesma sobra em dois lados.
+            Preenchendo a linha, não existe sobra para interpretar.
+          */
+          className="headline mt-[var(--space-block)] text-h2"
         >
           {why.closing.map((line) => (
             <span key={line} className="block">
-              {line === why.closingAccent ? <span className="text-red">{line}</span> : line}
+              {line}
             </span>
           ))}
         </motion.p>

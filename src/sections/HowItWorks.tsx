@@ -17,7 +17,7 @@ export function HowItWorks() {
   const { howItWorks: s } = site;
 
   return (
-    <section id="como-funciona" className="bg-bone pt-[var(--space-section)] pb-[var(--space-seam)]">
+    <section id="como-funciona" className="bg-bone pt-[var(--space-surface)] pb-[var(--space-seam)]">
       <Container>
         <SectionMark label={s.kicker} />
 
@@ -37,7 +37,7 @@ export function HowItWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.7, ease, delay: 0.12 }}
-            className="max-w-[46ch] self-end text-body leading-[1.6] text-ink-2 lg:col-span-5 lg:col-start-8"
+            className="max-w-[40ch] self-center text-lead leading-[1.5] text-ink-2 lg:col-span-5 lg:col-start-8"
           >
             {s.intro}
           </motion.p>
@@ -58,7 +58,18 @@ export function HowItWorks() {
                 }`}
               >
                 <div className="grid gap-x-12 gap-y-6 lg:grid-cols-12">
-                  <span className="tech-sm self-start pt-1.5 text-ink-3 lg:col-span-1">
+                  {/*
+                    O índice alinha pelo topo das maiúsculas do título ao lado,
+                    não pelo topo da caixa de linha. Como a etapa forte usa um
+                    corpo maior, o recuo tem de crescer junto: com um valor
+                    único, o número ficava alto demais justo na linha que mais
+                    chama atenção.
+                  */}
+                  <span
+                    className={`tech-sm self-start text-ink-3 lg:col-span-1 ${
+                      strong ? "pt-2.5" : "pt-1.5"
+                    }`}
+                  >
                     {step.index}
                   </span>
 

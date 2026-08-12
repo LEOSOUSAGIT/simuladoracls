@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { CTA, Container, Headline, Pending, SectionMark } from "@/components/brand/primitives";
+import { CTA, Container, Headline, SectionMark } from "@/components/brand/primitives";
 import { site } from "@/content/site";
 
 const ease = [0.2, 0.7, 0.3, 1] as const;
@@ -18,7 +18,7 @@ export function Faq() {
 
   return (
     <>
-      <section id="faq" className="bg-bone pt-[var(--space-seam)] pb-[var(--space-section)]">
+      <section id="faq" className="bg-bone pt-[var(--space-seam)] pb-[var(--space-surface)]">
         <Container>
           <SectionMark label={s.kicker} />
 
@@ -35,7 +35,6 @@ export function Faq() {
 
             <div className="lg:col-span-7 lg:col-start-6">
               {s.items.map((item, i) => {
-                const pending = "aPending" in item ? item.aPending : null;
                 return (
                   <motion.details
                     key={item.q}
@@ -57,13 +56,9 @@ export function Faq() {
                     </summary>
 
                     <div className="pb-7">
-                      {item.a ? (
-                        <p className="max-w-[62ch] text-[0.9375rem] leading-[1.7] text-ink-2">
-                          {item.a}
-                        </p>
-                      ) : (
-                        <Pending>{pending ?? "Resposta"}</Pending>
-                      )}
+                      <p className="max-w-[62ch] text-[0.9375rem] leading-[1.7] text-ink-2">
+                        {item.a}
+                      </p>
                     </div>
                   </motion.details>
                 );

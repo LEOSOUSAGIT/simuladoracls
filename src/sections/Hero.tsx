@@ -19,21 +19,17 @@ export function Hero() {
 
   return (
     <section className="grain relative flex min-h-svh flex-col overflow-hidden bg-graphite">
-      {/* Luz baixa vinda da esquerda — atmosfera de sala com pouca iluminação. */}
-      <div
-        className="pointer-events-none absolute -top-1/4 -left-[10%] h-[70vh] w-[70vw] rounded-full bg-[radial-gradient(closest-side,rgba(63,127,209,0.13),transparent)]"
-        aria-hidden
-      />
-
       {/* -------------------------------------------------- navegação */}
       <motion.nav
         {...rise(0)}
         className="container-page relative z-10 flex items-center justify-between gap-6 py-6"
       >
-        <div className="flex items-center gap-3">
-          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-red" aria-hidden />
-          <span className="tech-sm text-white/50">{nav.label}</span>
-        </div>
+        <a
+          href="#"
+          className="text-[0.9375rem] font-semibold tracking-[-0.02em] text-bone"
+        >
+          {brand.short}
+        </a>
 
         <div className="hidden items-center gap-9 lg:flex">
           {nav.links.map((l) => (
@@ -58,11 +54,9 @@ export function Hero() {
       {/* -------------------------------------------------- headline */}
       <div className="container-page relative z-10 flex flex-1 items-center py-16 sm:py-20">
         <div className="w-full">
-          <motion.div {...rise(0.08)} className="mb-8 flex items-center gap-4">
-            <span className="tech text-white/40">{hero.eyebrow}</span>
-            <span className="h-px w-16 bg-white/15 sm:w-28" aria-hidden />
-            <span className="tech hidden text-white/25 sm:inline">ACLS</span>
-          </motion.div>
+          <motion.p {...rise(0.08)} className="tech mb-8 text-white/40">
+            {hero.eyebrow}
+          </motion.p>
 
           <h1 className="headline text-h1 text-bone">
             {hero.headline.map((line, i) => (

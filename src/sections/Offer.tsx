@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { CTA, Container, Headline, Pending, SectionMark } from "@/components/brand/primitives";
+import { CTA, Container, Headline, SectionMark } from "@/components/brand/primitives";
 import { site } from "@/content/site";
 
 const ease = [0.2, 0.7, 0.3, 1] as const;
@@ -70,7 +70,7 @@ export function Offer() {
                 >
                   <dt className="text-[0.9375rem] text-ink-3">{term.label}</dt>
                   <dd className="text-[0.9375rem] leading-[1.5] text-ink">
-                    {term.value ?? <Pending>{term.label}</Pending>}
+                    {term.value}
                   </dd>
                 </div>
               ))}
@@ -78,16 +78,57 @@ export function Offer() {
           </div>
         </motion.div>
 
+        {/*
+          O preço fecha a seção, depois da lista do que está incluído: o
+          briefing pede o valor claro, mas a ordem de venda é valor entregue
+          primeiro, valor cobrado depois.
+
+          Ele estava como uma linha da lista de Condições, no mesmo corpo de
+          "Entrega" e "Requisitos" — a informação que decide a compra tinha o
+          peso de uma nota de rodapé.
+
+          O valor vai em text-h1, o mesmo corpo da headline do Hero. É o maior
+          número da página porque é a informação que decide a compra. "Oferta
+          extremamente limpa", no briefing, pede ausência de caixa, sombra e
+          fundo próprio — não pede discrição. Limpo não é pequeno, e um preço
+          tímido no fim de uma página de vendas lê como preço escondido.
+        */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-12%" }}
           transition={{ duration: 0.65, ease, delay: 0.14 }}
-          className="mt-16 flex justify-center sm:mt-20"
+          className="mt-[var(--space-block)] border-t border-ink/12 pt-16 text-center"
         >
-          <CTA href={brand.checkoutUrl}>{s.cta}</CTA>
-        </motion.div>
+          <p className="tech-sm text-ink-3">{s.price.label}</p>
 
+          <p className="headline mt-7 text-h1 text-ink">
+            {/*
+              Cifrão em corpo reduzido e alinhado ao topo: em corpo cheio ele
+              rouba largura do número, que é o que se quer ler primeiro.
+            */}
+            <span className="mr-3 align-top text-[0.3em] font-semibold tracking-[-0.01em] text-ink-3">
+              {s.price.currency}
+            </span>
+            {s.price.amount}
+          </p>
+
+          <p className="mt-6 text-lead leading-[1.5] text-ink-2">{s.price.terms}</p>
+
+          <ul className="mt-10 flex flex-wrap justify-center gap-3">
+            {s.price.methods.map((m) => (
+              <li key={m} className="tech-sm border border-ink/20 px-4 py-3 text-ink-2">
+                {m}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-12 flex justify-center">
+            <CTA href={brand.checkoutUrl}>{s.cta}</CTA>
+          </div>
+
+          <p className="tech-sm mt-8 text-ink-3">{s.price.note}</p>
+        </motion.div>
       </Container>
     </section>
   );

@@ -20,7 +20,6 @@ export const site = {
   },
 
   nav: {
-    label: "Simulador interativo de emergências · ACLS",
     links: [
       { label: "O simulador", href: "#simulador" },
       { label: "Como funciona", href: "#como-funciona" },
@@ -72,7 +71,6 @@ export const site = {
       },
     ],
     closing: ["Entre saber e agir existe uma decisão.", "E decisão também se treina."],
-    closingAccent: "E decisão também se treina.",
   },
 
   /* ---------------------------------------------------------------- 03 */
@@ -82,23 +80,48 @@ export const site = {
     headline: ["Entre em uma emergência", "criada para você praticar."],
     headlineAccent: "criada para você praticar.",
     body: "Você entra em um ambiente clínico 3D, acompanha o estado do paciente, lê o monitor, usa os recursos da sala e conduz o caso. Cada decisão altera o que acontece em seguida, inclusive quando está errada.",
+    /**
+     * Citação em primeira pessoa, sem autor por enquanto. Quando houver um
+     * depoimento real, com nome e profissão, basta assinar embaixo: a marcação
+     * já é <blockquote>, e o <cite> entra sem mexer no layout.
+     */
     quote: "Eu realmente entro no cenário e preciso interagir com o caso.",
+    /** Convite do arraste sobre a cena. Some depois do primeiro uso. */
+    exploreHint: "Arraste para olhar em volta",
     scene: {
-      src: null as string | null,
-      alt: "Sala de emergência do simulador 3D",
+      src: "/image/sala-maca-equipe-ajustada.png" as string | null,
+      w: 1545,
+      h: 1018,
+      alt: "Sala de emergência do simulador 3D vista de cima, com equipe, maca, monitores e equipamentos",
       kind: "Screenshot" as const,
       hint: "Sala de emergência, visão geral do cenário 3D",
-      caption: "Sala de emergência do simulador",
     },
+    /**
+     * Cinco âncoras, não sete. Anotar tudo vira infográfico de setas, que é
+     * o que o briefing pede para evitar — e só ancoro o que dá para
+     * identificar com certeza no quadro. A lista completa de recursos
+     * aparece em texto logo abaixo da cena.
+     *
+     * Coordenadas em % do quadro NATIVO da captura. Como a placa mostra o
+     * arquivo inteiro, sem recorte, essas coordenadas valem em qualquer
+     * largura — antes elas dependiam do focal e quebravam a cada ajuste.
+     *
+     * `side: "left"` joga o texto para a esquerda da âncora, para o rótulo
+     * não escapar da borda direita da placa.
+     */
     labels: [
-      { id: "paciente", text: "Paciente", x: 44, y: 62 },
-      { id: "equipe", text: "Equipe de apoio", x: 74, y: 44 },
-      { id: "monitor", text: "Monitor", x: 20, y: 26 },
-      { id: "desfibrilador", text: "Desfibrilador", x: 13, y: 58 },
-      { id: "carrinho", text: "Carrinho de emergência", x: 66, y: 74 },
-      { id: "medicacoes", text: "Medicações", x: 86, y: 66 },
-      { id: "via-aerea", text: "Via aérea / intubação", x: 34, y: 34 },
-    ],
+      { id: "monitor", text: "Monitor", x: 52, y: 27 },
+      { id: "via-aerea", text: "Via aérea / intubação", x: 60, y: 37 },
+      { id: "paciente", text: "Paciente", x: 45, y: 47 },
+      { id: "carrinho", text: "Carrinho de emergência", x: 79, y: 56, side: "left" },
+      { id: "equipe", text: "Equipe de apoio", x: 56, y: 72 },
+    ] as ReadonlyArray<{
+      id: string;
+      text: string;
+      x: number;
+      y: number;
+      side?: "left";
+    }>,
   },
 
   /* ---------------------------------------------------------------- 04 */
@@ -157,17 +180,16 @@ export const site = {
 
     decide: {
       label: "Decida",
-      headline: "191 bpm. Paciente instável. E agora?",
+      headline: "175 bpm. Paciente instável. E agora?",
       body: "Reconhecer o ritmo não resolve o caso. É preciso ler os sinais vitais, avaliar a estabilidade e escolher a conduta: droga ou choque, sincronizado ou não, e com qual carga.",
       aside: "A mesma arritmia pede condutas diferentes conforme o estado do paciente. É essa leitura que o simulador cobra.",
       media: {
-        /** Captura provisória em /image/painelgraficobpm.png — reativar com a definitiva. */
-        src: null as string | null,
-        alt: "Monitor e desfibrilador do simulador durante um cenário",
-        focal: "50% 40%",
+        src: "/image/monitor-175bpm-instavel-ajustada.png" as string | null,
+        w: 1672,
+        h: 941,
+        alt: "Monitor do simulador em 175 bpm com pressão 78/48, ao lado da descrição do caso e dos recursos disponíveis",
         kind: "Screenshot" as const,
         hint: "Monitor e desfibrilador em momento de decisão clínica",
-        caption: "Monitor e desfibrilador durante um cenário em andamento",
       },
     },
 
@@ -200,13 +222,12 @@ export const site = {
       principle:
         "Não se trata de o simulador ter um desfibrilador. Trata-se de você reconhecer quando usá-lo.",
       media: {
-        /** Captura provisória em /image/simulador-ambiente.png — reativar com a definitiva. */
-        src: null as string | null,
-        alt: "Recursos da sala de emergência no simulador 3D",
-        focal: "50% 32%",
+        src: "/image/monitor-desfibrilador-carregando-ajustado.png" as string | null,
+        w: 1672,
+        h: 941,
+        alt: "Desfibrilador do simulador sincronizado e carregando para 250 J durante um cenário",
         kind: "Screenshot" as const,
         hint: "Recursos da sala: desfibrilador, carrinho, medicações, via aérea",
-        caption: "Recursos disponíveis durante o cenário",
       },
     },
   },
@@ -240,13 +261,19 @@ export const site = {
     loopBody:
       "O erro dentro da simulação é barato e informativo. Ele mostra exatamente onde a conduta saiu do lugar, e você pode refazer o caso quantas vezes precisar.",
     closing: "Não é uma sala 3D para explorar. É um treinamento estruturado para ser repetido.",
-    /** Quando houver captura de feedback do simulador, apontar aqui. */
+    /**
+     * Última imagem antes do preço, onde a pessoa mede o que leva pelo valor
+     * cobrado. O painel de resultados ocupava esse lugar e terminava em duas
+     * linhas vermelhas de conduta incorreta — a última coisa vista antes da
+     * oferta era o produto dizendo que o usuário errou.
+     */
     media: {
-      src: null as string | null,
-      alt: "Tela de feedback ao final de um caso",
+      src: "/image/cenario-exame-paciente-ajustada.png" as string | null,
+      w: 1536,
+      h: 1024,
+      alt: "Equipe do simulador examinando um paciente de 68 anos sentado na maca, com o painel de recursos da sala à direita",
       kind: "Screenshot" as const,
-      hint: "Feedback do caso: conduta avaliada e resultado",
-      caption: "Feedback ao final do caso",
+      hint: "Cenário em andamento: equipe, paciente e recursos da sala",
     },
   },
 
@@ -268,17 +295,53 @@ export const site = {
       "Medicações e recursos clínicos da sala",
       "Progressão por estágios e feedback por caso",
     ],
-    /** PENDENTE — preencher com os dados reais da oferta na Hotmart. */
+    /**
+     * O preço fecha a seção em bloco próprio, depois da lista do que está
+     * incluído: primeiro o valor entregue, depois o valor cobrado.
+     *
+     * Valor, parcelamento e garantia saíram das Condições ao ganhar esse
+     * bloco. Repetir os três a poucos centímetros de distância fazia a lista
+     * parecer letra miúda contradizendo o anúncio.
+     *
+     * Sem valor por parcela: as taxas do parcelamento correm por conta do
+     * comprador, então 249 ÷ 12 não é o que ele paga. Anunciar "12x de R$
+     * 20,75" seria número falso, desmentido no checkout.
+     *
+     * Só os meios de pagamento relevantes no Brasil. A conta tem PayPal,
+     * Apple Pay, Mercado Pago, Nequi, Yape e outras regionais ativas, mas
+     * listar tudo vira inventário no lugar de condição.
+     */
+    price: {
+      /*
+       * O rótulo diz o prazo, não "acesso único". Pagamento único e acesso
+       * permanente são coisas diferentes, e com licença de 90 dias a segunda
+       * leitura seria promessa que o produto não cumpre.
+       */
+      label: "Licença de 90 dias",
+      currency: "R$",
+      amount: "249,00",
+      terms: "Pagamento único, à vista ou parcelado.",
+      /**
+       * Formas de pagamento como itens visíveis, não como frase corrida. O
+       * briefing pede que apareçam "claramente", e dentro de um parágrafo elas
+       * só existem para quem lê a linha inteira.
+       */
+      methods: ["Pix", "Boleto", "Cartão em até 12x"],
+      note: "7 dias de garantia · acesso imediato ao download",
+    },
     terms: [
-      { label: "Valor", value: PENDENTE as string | null },
-      { label: "Formas de pagamento", value: PENDENTE as string | null },
-      { label: "Duração do acesso", value: PENDENTE as string | null },
-      { label: "Garantia", value: PENDENTE as string | null },
+      {
+        label: "Duração do acesso",
+        value: "90 dias, contados da confirmação da compra.",
+      },
       {
         label: "Entrega",
         value: "Acesso imediato ao download após a confirmação da compra.",
       },
-      { label: "Requisitos", value: PENDENTE as string | null },
+      {
+        label: "Requisitos",
+        value: "Windows ou Android, com 4 GB de memória. Depois de instalado, funciona sem internet.",
+      },
     ],
     cta: "Quero começar a praticar",
   },
@@ -303,22 +366,20 @@ export const site = {
       },
       {
         q: "Preciso instalar alguma coisa?",
-        a: "Sim. O simulador é um programa que você baixa e instala no computador. Ele não roda dentro do navegador. Depois da instalação, você pratica quantas vezes quiser sem depender de conexão constante.",
+        a: "Sim. O simulador é um programa que você baixa e instala no seu dispositivo. Ele não roda dentro do navegador. Depois da instalação, você pratica quantas vezes quiser sem depender de conexão com a internet.",
         /** Confirmado com o cliente: produto instalável. */
       },
       {
         q: "Em quais dispositivos funciona?",
-        aPending: "Requisitos técnicos e sistemas operacionais suportados",
-        a: null as string | null,
+        a: "Em computadores com Windows e em dispositivos Android. O requisito de memória é de 4 GB. Depois de instalado, o simulador funciona sem conexão com a internet.",
       },
       {
         q: "Por quanto tempo tenho acesso?",
-        aPending: "Duração do acesso",
-        a: null as string | null,
+        a: "A licença é de 90 dias, contados a partir da confirmação da compra. Dentro desse período você pratica quantas vezes quiser, refazendo os casos sem limite.",
       },
       {
         q: "Como funciona o pagamento?",
-        a: "A compra é processada pela Hotmart, com ambiente de pagamento próprio da plataforma. Assim que o pagamento é confirmado, o acesso ao download é liberado.",
+        a: "A compra é processada pela Hotmart, com ambiente de pagamento próprio da plataforma. Você pode pagar com cartão de crédito, à vista ou parcelado, com Pix ou com boleto bancário. Assim que o pagamento é confirmado, o acesso ao download é liberado.",
       },
     ],
     finalCta: {
