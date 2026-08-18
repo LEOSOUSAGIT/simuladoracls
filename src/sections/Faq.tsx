@@ -95,6 +95,12 @@ export function Faq() {
           <Container className="flex flex-col gap-8 py-12 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-[70ch]">
               <p className="text-[0.9375rem] font-medium text-bone">{brand.name}</p>
+              <a
+                href={`mailto:${footer.contact}`}
+                className="mt-2 inline-block text-[0.8125rem] text-white/55 transition-colors hover:text-bone"
+              >
+                {footer.contact}
+              </a>
               <p className="mt-4 text-[0.8125rem] leading-[1.7] text-white/40">
                 {footer.disclaimer}
               </p>

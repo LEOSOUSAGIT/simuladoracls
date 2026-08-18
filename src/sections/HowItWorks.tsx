@@ -17,7 +17,7 @@ export function HowItWorks() {
   const { howItWorks: s } = site;
 
   return (
-    <section id="como-funciona" className="bg-bone pt-[var(--space-surface)] pb-[var(--space-seam)]">
+    <section id="como-funciona" className="bg-bone py-[var(--space-surface)]">
       <Container>
         <SectionMark label={s.kicker} />
 

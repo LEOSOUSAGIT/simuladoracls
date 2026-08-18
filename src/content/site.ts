@@ -15,8 +15,8 @@ export const site = {
   brand: {
     name: "Simulador de Emergências Cardiológicas",
     short: "Simulador ACLS",
-    /** Substituir pela URL real do checkout Hotmart. */
-    checkoutUrl: "#oferta",
+    /** Checkout real na Hotmart. Todos os CTAs da página apontam para cá. */
+    checkoutUrl: "https://pay.hotmart.com/F106216811J?bid=1787085626176",
   },
 
   nav: {
@@ -392,10 +392,16 @@ export const site = {
   footer: {
     disclaimer:
       "Este simulador é uma ferramenta de treinamento e preparação prática. Não emite certificação, não substitui o curso oficial de ACLS nem treinamento presencial, e não possui vínculo com a American Heart Association.",
+    /**
+     * Contato oficial. O Decreto 7.962/2013 exige, além dele, razão social,
+     * CNPJ e endereço físico em local de fácil visualização — assim que o
+     * cliente informar, entram aqui e o rodapé passa a exibi-los.
+     */
+    contact: "simuladoracls@gmail.com",
     links: [
-      { label: "Política de privacidade", href: "#" },
-      { label: "Termos de uso", href: "#" },
-      { label: "Suporte", href: "#" },
+      { label: "Política de privacidade", href: "/privacidade" },
+      { label: "Termos de uso", href: "/termos" },
+      { label: "Suporte", href: "mailto:simuladoracls@gmail.com" },
     ],
   },
 } as const;
