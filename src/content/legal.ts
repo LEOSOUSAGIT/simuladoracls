@@ -22,7 +22,16 @@ export type LegalSection = {
   blocks: readonly LegalBlock[];
 };
 
-export const CONTATO = "simuladoracls@gmail.com";
+/**
+ * Canal oficial único. Vale para os cinco pontos em que estes documentos
+ * exigem um endereço de contato: identificação do fornecedor, direito de
+ * arrependimento do art. 49 do CDC, suporte, controlador de dados e exercício
+ * dos direitos do art. 18 da LGPD.
+ *
+ * É a mesma caixa da landing e da página de download — o comprador nunca vê
+ * dois endereços concorrentes para o mesmo produto.
+ */
+export const CONTATO = "suporte@simuladoracls.com";
 
 /** Aviso fixo no topo dos dois documentos enquanto faltarem dados cadastrais. */
 export const RASCUNHO_AVISO =

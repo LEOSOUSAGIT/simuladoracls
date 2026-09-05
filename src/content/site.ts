@@ -397,11 +397,11 @@ export const site = {
      * CNPJ e endereço físico em local de fácil visualização — assim que o
      * cliente informar, entram aqui e o rodapé passa a exibi-los.
      */
-    contact: "simuladoracls@gmail.com",
+    contact: "suporte@simuladoracls.com",
     links: [
       { label: "Política de privacidade", href: "/privacidade" },
       { label: "Termos de uso", href: "/termos" },
-      { label: "Suporte", href: "mailto:simuladoracls@gmail.com" },
+      { label: "Suporte", href: "mailto:suporte@simuladoracls.com" },
     ],
   },
 } as const;
