@@ -15,8 +15,12 @@ export const site = {
   brand: {
     name: "Simulador de Emergências Cardiológicas",
     short: "Simulador ACLS",
-    /** Checkout real na Hotmart. Todos os CTAs da página apontam para cá. */
-    checkoutUrl: "https://pay.hotmart.com/F106216811J?bid=1787085626176",
+    /**
+     * Checkout real na Hotmart. Todos os CTAs da página apontam para cá —
+     * Hero, oferta, fecho do FAQ, barra fixa do mobile e o botão da nav.
+     * Trocar aqui troca os cinco.
+     */
+    checkoutUrl: "https://pay.hotmart.com/C107328938X",
   },
 
   nav: {
