@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<title>Manual de Acesso — Simulador Interativo ACLS</title>
+
+<!--
+  ARQUIVO-FONTE do PDF entregue pela Hotmart.
+
+  Este documento é a origem de Manual-de-Acesso-Simulador-ACLS.pdf. Para
+  atualizar o manual, edite este HTML e gere o PDF de novo com o comando
+  registrado no README desta pasta.
+
+  A identidade é a mesma da landing: os tokens abaixo são cópia literal dos
+  de src/app/globals.css, e as medidas seguem os mesmos princípios — headline
+  de tracking fechado, microtipografia mono em caixa alta, réguas de 1px,
+  vermelho só na decisão. A diferença é a unidade: aqui tudo é milímetro e
+  ponto, porque o destino é papel A4, não tela.
+
+  As fontes ficam em ./fonts/ (cópia do pacote geist) para que a pasta seja
+  autocontida e o PDF possa ser regerado sem node_modules instalado.
+-->
+
+<style>
+  /* ============================================================
+     TOKENS DE MARCA — espelho de src/app/globals.css
+     ============================================================ */
+  :root {
+    --bone:   #f4f1ea;
+    --ink:    #0b0c0e;
+    --ink-2:  #43474d;
+    --ink-3:  #7c8189;
+
+    --graphite: #0b0d10;
+
+    --red:      #e01b22;
+    --signal:   #2fd46b;
+
+    --sans: "Segoe UI Variable", ui-sans-serif, system-ui, -apple-system,
+            "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Geist Mono", ui-monospace, monospace;
+
+    --headline-tracking: -0.035em;
+    --headline-leading: 0.94;
+  }
+
+  @font-face {
+    font-family: "Geist Mono";
+    src: url("./fonts/GeistMono-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: "Geist Mono";
+    src: url("./fonts/GeistMono-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: block;
+  }
+
+  /* ============================================================
+     PÁGINA
+     Sangria total: a faixa grafite do topo encosta nas bordas do
+     papel, então a margem do @page é zero e o recuo vive no
+     conteúdo. print-color-adjust mantém as superfícies de marca —
+     sem ele o navegador descarta os fundos na impressão.
+     ============================================================ */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+  }
+
+  body {
+    background: var(--bone);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 9.6pt;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Recuo lateral único, o mesmo do topo ao rodapé. */
+  .pad { padding-left: 22mm; padding-right: 22mm; }
+
+  /* ============================================================
+     01 — FAIXA GRAFITE
+     A superfície instrumento abre o documento, como o Hero abre a
+     landing. É o único bloco escuro, e o único lugar onde o verde
+     de sinal aparece.
+     ============================================================ */
+  .band {
+    background: var(--graphite);
+    color: var(--bone);
+    padding-top: 13mm;
+    padding-bottom: 13mm;
+    flex: none;
+  }
+
+  .lockup { display: flex; align-items: center; gap: 4.2mm; }
+
+  .mark {
+    width: 11mm; height: 11mm;
+    background: #14171c;
+    display: flex; align-items: center; justify-content: center;
+    flex: none;
+  }
+  .mark svg { width: 7.6mm; height: 6.4mm; display: block; }
+  .mark path {
+    fill: none;
+    stroke: var(--signal);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .wordmark {
+    font-size: 11pt;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--bone);
+  }
+
+  .doctype {
+    margin-top: 11mm;
+    display: flex;
+    align-items: center;
+    gap: 4mm;
+  }
+  .doctype::before {
+    content: "";
+    width: 11mm; height: 1px;
+    background: rgba(255,255,255,.25);
+    flex: none;
+  }
+  .doctype span {
+    font-family: var(--mono);
+    font-size: 7.4pt;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    color: rgba(255,255,255,.5);
+    line-height: 1;
+  }
+
+  /* ============================================================
+     02 — CORPO
+     ============================================================ */
+  .body {
+    flex: 1;
+    padding-top: 13mm;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: 30pt;
+    font-weight: 700;
+    letter-spacing: var(--headline-tracking);
+    line-height: var(--headline-leading);
+    max-width: 15ch;
+  }
+  /* O vermelho marca a linha que carrega a ação — mesmo critério da landing. */
+  h1 .accent { color: var(--red); display: block; }
+
+  .lead {
+    margin-top: 7mm;
+    font-size: 10.4pt;
+    line-height: 1.55;
+    color: var(--ink-2);
+    max-width: 62ch;
+  }
+
+  /* "e-mail" tem hífen próprio, e o navegador quebra a linha nele. Sem isto
+     a lead termina em "para o e-" e recomeça em "mail". */
+  .nb { white-space: nowrap; }
+
+  /* ---------------------------------------------- CTA ---------------- */
+  .action { margin-top: 11mm; }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3.4mm;
+    padding: 4.6mm 8mm;
+    background: var(--red);
+    color: var(--bone);
+    font-size: 10.5pt;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    line-height: 1;
+  }
+  .cta svg { width: 4.2mm; height: 3mm; flex: none; }
+  .cta path {
+    fill: none;
+    stroke: var(--bone);
+    stroke-width: 1.4;
+    stroke-linecap: square;
+  }
+
+  /* A URL escrita por extenso: o PDF pode ser impresso, e em papel um
+     botão não é clicável. O endereço precisa estar legível. */
+  .url {
+    margin-top: 4.5mm;
+    display: block;
+    font-family: var(--mono);
+    font-size: 8.6pt;
+    color: var(--ink-2);
+    text-decoration: none;
+    letter-spacing: -0.005em;
+  }
+
+  /* ---------------------------------------------- réguas ------------- */
+  .rule {
+    height: 1px;
+    background: rgba(11,12,14,.12);
+    border: 0;
+  }
+
+  /* Marcador de seção: régua curta + rótulo mono. O mesmo componente
+     SectionMark que abre cada seção da landing. */
+  .mark-label {
+    display: flex;
+    align-items: center;
+    gap: 4mm;
+  }
+  .mark-label::before {
+    content: "";
+    width: 11mm; height: 1px;
+    background: rgba(11,12,14,.2);
+    flex: none;
+  }
+  .mark-label span {
+    font-family: var(--mono);
+    font-size: 7.4pt;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    color: var(--ink-2);
+    line-height: 1;
+  }
+
+  /* Régua de separação entre blocos. O par margem/recuo é o "respiro
+     simétrico" das costuras da landing: o mesmo valor acima e abaixo da
+     linha, para a régua ficar centrada no intervalo. */
+  section {
+    margin-top: 10mm;
+    padding-top: 10mm;
+    border-top: 1px solid rgba(11,12,14,.12);
+  }
+
+  /* ---------------------------------------------- passos ------------- */
+  ol { list-style: none; margin-top: 9mm; }
+  ol li {
+    display: flex;
+    gap: 6mm;
+    padding: 3.6mm 0;
+    border-top: 1px solid rgba(11,12,14,.1);
+    color: var(--ink-2);
+    max-width: 78ch;
+  }
+  ol li:first-child { border-top: 0; padding-top: 0; }
+  ol li:last-child  { padding-bottom: 0; }
+  ol .n {
+    font-family: var(--mono);
+    font-size: 8.6pt;
+    font-weight: 500;
+    color: var(--ink-3);
+    flex: none;
+    width: 7mm;
+    line-height: 1.62;
+  }
+
+  /* ---------------------------------------------- suporte ------------ */
+  .support-mail {
+    margin-top: 8mm;
+    display: inline-block;
+    font-size: 11pt;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  /* ============================================================
+     03 — RODAPÉ
+     Empurrado para a base pelo flex. O aviso é discreto por
+     tamanho e cor, nunca por omissão.
+     ============================================================ */
+  /* A margem inferior acompanha a lateral (22mm) para o bloco de texto não
+     encostar na borra do papel em impressoras com sangria irregular. */
+  footer {
+    margin-top: auto;
+    padding-top: 7mm;
+    padding-bottom: 20mm;
+  }
+  footer .disclaimer {
+    margin-top: 6mm;
+    font-size: 7.4pt;
+    line-height: 1.6;
+    color: var(--ink-3);
+    max-width: 92ch;
+  }
+</style>
+</head>
+
+<body>
+<div class="page">
+
+  <!-- ============================================ 01 · faixa grafite -->
+  <header class="band pad">
+    <div class="lockup">
+      <span class="mark">
+        <svg viewBox="-1 -1 34 28" aria-hidden="true">
+          <path d="M2 18h6l3-9 4 15 3.5-10 2.5 4h9" />
+        </svg>
+      </span>
+      <span class="wordmark">Simulador Interativo ACLS</span>
+    </div>
+
+    <p class="doctype"><span>Manual de acesso</span></p>
+  </header>
+
+  <!-- ============================================ 02 · corpo --------- -->
+  <main class="body pad">
+
+    <h1>Seu simulador está <span class="accent">pronto para baixar.</span></h1>
+
+    <p class="lead">
+      Obrigado pela sua compra. Sua licença individual será enviada para o
+      <span class="nb">e-mail</span> utilizado no pagamento e será solicitada
+      na primeira ativação do simulador.
+    </p>
+
+    <div class="action">
+      <a class="cta" href="https://simuladoracls.com/download">
+        Baixar o Simulador
+        <svg viewBox="0 0 14 10" aria-hidden="true"><path d="M9 1l4 4-4 4M13 5H0" /></svg>
+      </a>
+      <a class="url" href="https://simuladoracls.com/download">simuladoracls.com/download</a>
+    </div>
+
+    <!-- ------------------------------------------ como acessar ------- -->
+    <section>
+      <p class="mark-label"><span>Como acessar</span></p>
+      <ol>
+        <li><span class="n">01</span><span>Acesse a página de download.</span></li>
+        <li><span class="n">02</span><span>Escolha Windows ou Android.</span></li>
+        <li><span class="n">03</span><span>Baixe e instale o simulador.</span></li>
+        <li><span class="n">04</span><span>Utilize a licença recebida por <span class="nb">e-mail</span> na primeira ativação.</span></li>
+      </ol>
+    </section>
+
+    <!-- ------------------------------------------ suporte ------------ -->
+    <section>
+      <p class="mark-label"><span>Suporte</span></p>
+      <a class="support-mail" href="mailto:suporte@simuladoracls.com">suporte@simuladoracls.com</a>
+    </section>
+
+    <!-- ------------------------------------------ rodapé ------------- -->
+    <footer>
+      <hr class="rule" />
+      <p class="disclaimer">
+        O Simulador Interativo ACLS é uma ferramenta de treinamento e não
+        substitui cursos, certificações oficiais ou treinamento clínico
+        supervisionado.
+      </p>
+    </footer>
+
+  </main>
+</div>
+</body>
+</html>
