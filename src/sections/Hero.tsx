@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { LogoMark } from "@/components/brand/Logo";
 import { CTA } from "@/components/brand/primitives";
 import { VitalsRail } from "@/components/instrument/VitalsRail";
 import { site } from "@/content/site";
@@ -24,11 +25,8 @@ export function Hero() {
         {...rise(0)}
         className="container-page relative z-10 flex items-center justify-between gap-6 py-6"
       >
-        <a
-          href="#"
-          className="text-[0.9375rem] font-semibold tracking-[-0.02em] text-bone"
-        >
-          {brand.short}
+        <a href="#" className="inline-block transition-opacity hover:opacity-70">
+          <LogoMark tone="dark" className="h-8" priority standalone />
         </a>
 
         <div className="hidden items-center gap-9 lg:flex">

@@ -1,8 +1,8 @@
 import Link from "next/link";
+import { LogoMark } from "@/components/brand/Logo";
 import { Container, Pending } from "@/components/brand/primitives";
 import type { LegalBlock, LegalSection } from "@/content/legal";
 import { RASCUNHO_AVISO } from "@/content/legal";
-import { site } from "@/content/site";
 
 /**
  * Layout dos documentos legais.
@@ -26,12 +26,8 @@ export function LegalDoc({
   return (
     <main className="bg-bone">
       <Container className="py-[var(--space-surface)]">
-        <Link
-          href="/"
-          className="tech-sm inline-flex items-center gap-2.5 text-ink-3 transition-colors hover:text-ink"
-        >
-          <span aria-hidden>←</span>
-          {site.brand.short}
+        <Link href="/" className="inline-block transition-opacity hover:opacity-70">
+          <LogoMark tone="light" className="h-8" standalone />
         </Link>
 
         <div className="mt-[var(--space-mark)] max-w-[72ch]">

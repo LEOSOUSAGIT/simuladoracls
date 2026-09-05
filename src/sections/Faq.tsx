@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { LogoMark } from "@/components/brand/Logo";
 import { CTA, Container, Headline, SectionMark } from "@/components/brand/primitives";
 import { site } from "@/content/site";
 
@@ -94,7 +95,13 @@ export function Faq() {
         <footer className="border-t border-white/10">
           <Container className="flex flex-col gap-8 py-12 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-[70ch]">
-              <p className="text-[0.9375rem] font-medium text-bone">{brand.name}</p>
+              {/*
+                A marca vem acima do nome, não ao lado: "Simulador de
+                Emergências Cardiológicas" ocupa quase toda a coluna, e um
+                símbolo à esquerda de uma linha tão longa desequilibra o bloco.
+              */}
+              <LogoMark tone="dark" className="h-7" />
+              <p className="mt-4 text-[0.9375rem] font-medium text-bone">{brand.name}</p>
               <a
                 href={`mailto:${footer.contact}`}
                 className="mt-2 inline-block text-[0.8125rem] text-white/55 transition-colors hover:text-bone"

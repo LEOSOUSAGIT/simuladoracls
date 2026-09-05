@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { LogoMark } from "@/components/brand/Logo";
 import { CTA, Container, SectionMark } from "@/components/brand/primitives";
 import { download } from "@/content/download";
-import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Baixe o simulador — Simulador de Emergências Cardiológicas",
@@ -24,12 +24,8 @@ export default function DownloadPage() {
   return (
     <main className="bg-bone">
       <Container className="py-[var(--space-surface)]">
-        <Link
-          href="/"
-          className="tech-sm inline-flex items-center gap-2.5 text-ink-3 transition-colors hover:text-ink"
-        >
-          <span aria-hidden>←</span>
-          {site.brand.short}
+        <Link href="/" className="inline-block transition-opacity hover:opacity-70">
+          <LogoMark tone="light" className="h-8" standalone />
         </Link>
 
         <div className="mt-[var(--space-mark)] max-w-[72ch]">

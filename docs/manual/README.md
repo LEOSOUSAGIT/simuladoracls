@@ -7,6 +7,7 @@ PDF de uma página entregue ao comprador pela Hotmart.
 | `Manual-de-Acesso-Simulador-ACLS.html` | **fonte** — edite aqui |
 | `Manual-de-Acesso-Simulador-ACLS.pdf` | saída gerada, é o que vai para a Hotmart |
 | `fonts/` | Geist Mono (cópia de `geist`), para a pasta ser autocontida |
+| `logo-simulador-fundo-claro.png` | a marca, mesma arte que o site usa |
 
 ## Como regerar o PDF
 
@@ -27,7 +28,7 @@ opção de tamanho ou margem é passada na linha de comando.
 
 ## O que conferir depois de editar
 
-O documento é de **uma página com sangria total** no topo, e o rodapé é
+O documento é de **uma página**, papel osso do topo ao rodapé, e o rodapé é
 posicionado por `margin-top: auto` dentro de `.page { height: 297mm;
 overflow: hidden }`. Isso tem uma armadilha: se o conteúdo crescer além dos
 297mm, o `auto` deixa de ter folga e o `padding-bottom` do rodapé é comido
